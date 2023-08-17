@@ -4,6 +4,7 @@
 library(geodata)
 library(terra)
 library(dplyr)
+library(here)
 library(ggplot2)
 library(patchwork)
 library(GenSA)
@@ -12,19 +13,19 @@ library(GenSA)
 # for fast processing
 
 # read DAYMET gridded data
-ma_nh_temp <- terra::rast("../data/daymet_mean_temperature.tif") |>
+ma_nh_temp <- terra::rast(here::here("data/daymet_mean_temperature.tif")) |>
   terra::trim()
 
 # read harvard forest GCC time series and matching
 # DAYMET data
 harvard_phenocam_data <- readr::read_csv(
-  "../data/harvard_DB_1000_3day.csv",
+  here::here("data/harvard_DB_1000_3day.csv"),
   comment = "#"
   )
 
 # read derived phenology metrics
 harvard_phenology <- readr::read_csv(
-  "../data/harvard_DB_1000_3day_transition_dates.csv",
+  here::here("data/harvard_DB_1000_3day_transition_dates.csv"),
   comment = "#") |>
   dplyr::filter(
     direction == "rising",
@@ -51,7 +52,7 @@ This is a very dense chapter, covering both the concepts of constructing a (pseu
 
 :::
 
-## PhenoCam validation data
+## PhenoCam validation data {#sec-phenocam}
 
 To illustrate the use of growing degree days in modelling spring phenology, I will use PhenoCam data. The [PhenoCam network](https://phenocam.nau.edu/webcam/) [@richardson_tracking_2018; @richardson_tracking_2018-1] uses network connected cameras to collect seasonal trajectories of vegetation greenness, as characterized with green chromatic coordinate (GCC) values. PhenoCam data can be downloaded using the [`phenocamr` R package](https://bluegreen-labs.github.io/phenocamr/) [@hufkens_integrated_2018].
 
@@ -395,9 +396,7 @@ rmse_gdd <- function(par, data) {
 ::: callout-warning
 ### Warning
 
-Both the cost function as the growing degree day function are not optimized for computational efficiency. Both functions are written with clarity in mind to teach the basic concepts of model optimization/parameterization. Model optimization relies on iteratively searching for the best parameter by running the model thousands of times. Slow code can make it practically impossible to converge on a solution as time requirements grow beyond what is workable.
-
-Within the context of this worked example, computational efficiency is not a concern. However, when implementing your own code, take care to optimize both functions for efficiency by vectorization and other techniques. 
+Both the cost function as the growing degree day function are not optimized for computational efficiency. Both functions are written with clarity in mind to teach the basic concepts of model optimization/parameterization. Model optimization relies on iteratively searching for the best parameter by running the model thousands of times. Slow code can make it practically impossible to converge on a solution as time requirements grow beyond what is workable. Within the context of this worked example, computational efficiency is not a concern. However, when implementing your own code, take care to optimize both functions for efficiency by vectorization and other techniques. 
 
 :::
 
