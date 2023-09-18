@@ -1,14 +1,12 @@
 # A handful of pixels: doing big science with small data
 
-A set of worked examples in geo-spatial data processing.
+In this free book I will focus on a set of examples which are rather limited in spatial scope, using just a handfull of pixels. In contrast to what the cloud computing revolution promised, many ideas start out from site or localized studies. The focus of this book on using just a handfull of pixels is therefore deliberate. This allows data to be as large as required, but as small as possible.
 
-Note: When forking this repository the automatic rendering through a runner needs to be enabled, and the command `quarto publish gh-pages` run. Subsequent renders will be covered through github actions.
+Not only does this allow you to experiment with geo-spatial data on limited compute infrastructure, it also shows you that true science can be done with relatively modest means. You will learn to do big science with small data.
+
+This book is proudly GPT free, mistakes are my own.
 
 ## Making changes
 
 Changes to the course are governed by making changes/pull requests to the original project at:
 https://github.com/khufkens/handfull_of_pixels
-
-If making changes fork this original project and do a pull request. Then, sync this repository to visualize content using the GECO theme by pushing the `Sync fork` button, and then the green `Update Branch` button.
-
-![Screenshot from 2023-05-25 10-22-55](https://github.com/geco-bern/handfull_of_pixels/assets/1354258/a148e027-a590-4864-95d1-f98729692930)
