@@ -6,7 +6,8 @@ Not only does this allow you to experiment with geo-spatial data on limited comp
 
 This book is proudly GPT free, mistakes are my own.
 
-## Making changes
+## Contributing
 
-Changes to the course are governed by making changes/pull requests to the original project at:
-https://github.com/khufkens/handfull_of_pixels
+The original course can be found [here](https://github.com/bluegreen-labs/handful_of_pixels), of which this is a subset.
+
+![](https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png)
