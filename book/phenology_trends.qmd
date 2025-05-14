@@ -47,7 +47,8 @@ To detect and quantify relationships between phenology and topography, we requir
 library(geodata)
 
 # download SRTM data
-# This stores file srtm_38_03.tif in tempdir()
+# This stores file srtm_38_03.tif in 
+# subfolder elevation of tempdir()
 geodata::elevation_3s(
     lat = 46.6756,
     lon = 7.85480,
@@ -60,6 +61,7 @@ geodata::elevation_3s(
 dem <- terra::rast(
   file.path(
     tempdir(),
+    "elevation",
     "srtm_38_03.tif"
     )
 )
