@@ -560,7 +560,8 @@ In (@tbl-confusion-matrix) a three class confusion matrix is shown with the mode
 Simple confusion matrices can be calculated using R using the `table` function comparing the true reference labels with the predicted values for our model.
 
 ```{r include = FALSE}
-xgb_best_model <- readRDS(here::here("data/xgboost_model.rds"))
+xgb_best_model <- readRDS(here::here("data/xgboost_model.rds")) 
+# NOTE: this does not work, xgboost must be bundle::bundled() to store as RDS, see notes on MacBook in 02-test.R
 
 library(stringr)
 
