@@ -241,7 +241,8 @@ p2 <- ggplot() +
     ) +
   theme_bw()
 
-# compositing
+# compositing with patchwork package
+library(patchwork)
 p + p2 + 
   plot_layout(ncol = 1) + 
   plot_annotation(
