@@ -1,4 +1,4 @@
-# Phenology modelling {#sec-phenology-modelling}
+# Phenology modelling (optional) {#sec-phenology-modelling}
 
 ```{r include = FALSE}
 library(geodata)
