@@ -94,7 +94,7 @@ library(leaflet)
 
 # set the colour scale manually
 pal <- colorNumeric(
-  "magma",
+  "magma", 
   values(r),
   na.color = "transparent"
   )
@@ -107,7 +107,8 @@ leaflet() |>
   addProviderTiles(providers$Esri.WorldTopoMap, group = "World Topo") |>
   addRasterImage(
     r,
-    colors = pal,
+    colors = pal, 
+    project = FALSE, # https://github.com/rstudio/leaflet/issues/224#issuecomment-2691958076
     opacity = 0.8,
     group = "raster"
     ) |>
