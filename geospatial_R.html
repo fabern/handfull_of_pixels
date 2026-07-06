@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>3&nbsp; Geospatial data in R – A Handful of Pixels</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -59,7 +62,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -90,19 +92,18 @@ div.csl-indent {
 <link href="./figures/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1b664e6692268865ac8c350bc2db6ed4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-55abac0465d10ec823624cc1da9df1de.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-1b664e6692268865ac8c350bc2db6ed4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7db605ffba45efe17bf04bdcd32fe67e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-6d3f7e089726194c4b25df785030b44b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-7db605ffba45efe17bf04bdcd32fe67e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -144,7 +145,7 @@ div.csl-indent {
 <script src="site_libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -406,10 +407,6 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -587,7 +584,7 @@ Figure&nbsp;3.1: Image by <a href="https://commons.wikimedia.org/wiki/File:Raste
 <h2 data-number="3.1" class="anchored" data-anchor-id="the-r-geospatial-ecosystem"><span class="header-section-number">3.1</span> The R geospatial ecosystem</h2>
 <p>Spatio-temporal data often comes in the form of arrays, with space and time being array dimensions. Examples include socio-economic or demographic data, series of satellite images with multiple spectral bands, spatial simulations, and climate or weather model output.</p>
 <p>A number of libraries (packages) make the use of this spatio-temporal data, and geo-computational work in R easy. However, the ecosystem has grown rapidly and is therefore continuously shifting. Unlike other processing environments, this makes it at times hard to keep track of what or when to use a particular package.</p>
-<p>Here, a quick overview of the basic functionality and uses cases of different geospatial R packages is provided, and a brief overview of some basic geospatial operations using <code>terra</code> and <code>sf</code> libraries is given (see <a href="#sec-terra" class="quarto-xref"><span>Section 3.1.1</span></a> and <a href="#sec-sf" class="quarto-xref"><span>Section 3.1.2</span></a>). For a more deeper dive into these packages, see <span class="citation" data-cites="lovelace_geocomputation_2019">Lovelace, Nowosad, and Muenchow (<a href="references.html#ref-lovelace_geocomputation_2019" role="doc-biblioref">2019</a>)</span> .</p>
+<p>Here, a quick overview of the basic functionality and uses cases of different geospatial R packages is provided, and a brief overview of some basic geospatial operations using <code>terra</code> and <code>sf</code> libraries is given (see <a href="#sec-terra" class="quarto-xref"><span>Section 3.1.1</span></a> and <a href="#sec-sf" class="quarto-xref"><span>Section 3.1.2</span></a>). For a more deeper dive into these packages, see <span class="citation" data-cites="lovelace_geocomputation_2019">Lovelace et al. (<a href="references.html#ref-lovelace_geocomputation_2019" role="doc-biblioref">2019</a>)</span> .</p>
 <section id="sec-terra" class="level3" data-number="3.1.1">
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="sec-terra"><span class="header-section-number">3.1.1</span> The terra package</h3>
 <p>The <code>terra</code> package is the successor of the older <code>raster</code> package and provides a simpler interface. This package deals with both geographic raster and vector data, with the explicit requirement that raster data represent spatially continuous processes on a fixed (rectangular) grid.</p>
@@ -1351,7 +1348,7 @@ Figure&nbsp;3.13: A plot with all intetersecting vectors polygons aggregated by 
 </div>
 </div>
 </div>
-<p>The <code>sf</code> package is relatively complex and for a full understanding of its components I refer to the <a href="https://r-spatial.github.io/sf/">package documentation</a> and the book by <span class="citation" data-cites="lovelace_geocomputation_2019">Lovelace, Nowosad, and Muenchow (<a href="references.html#ref-lovelace_geocomputation_2019" role="doc-biblioref">2019</a>)</span>.</p>
+<p>The <code>sf</code> package is relatively complex and for a full understanding of its components I refer to the <a href="https://r-spatial.github.io/sf/">package documentation</a> and the book by <span class="citation" data-cites="lovelace_geocomputation_2019">Lovelace et al. (<a href="references.html#ref-lovelace_geocomputation_2019" role="doc-biblioref">2019</a>)</span>.</p>
 </section>
 <section id="writing-and-exporting-data-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="writing-and-exporting-data-1">Writing and exporting data</h4>
@@ -1403,7 +1400,7 @@ Figure&nbsp;3.15: Various non-regular grid representations of raster data, handl
 <p>Note that R (or Python) is infinitely flexible, and many packages exist to address niche problems within the context of geospatial data manipulation. While they most often tap into the the GDAL framework, these packages can be very powerful for certain applications which are outside the scope of this basic introduction. For more in-depth discussion, the reader is referred to the list of resources in the references at the end of this book.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-lovelace_geocomputation_2019" class="csl-entry" role="listitem">
 Lovelace, Robin, Jakub Nowosad, and Jannes Muenchow. 2019. <em>Geocomputation in <span>R</span></em>. Chapman &amp; Hall.
 </div>

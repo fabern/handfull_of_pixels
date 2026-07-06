@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>7&nbsp; Land-Cover classification – A Handful of Pixels</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -59,7 +62,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -90,19 +92,18 @@ div.csl-indent {
 <link href="./figures/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1b664e6692268865ac8c350bc2db6ed4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-55abac0465d10ec823624cc1da9df1de.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-1b664e6692268865ac8c350bc2db6ed4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7db605ffba45efe17bf04bdcd32fe67e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-6d3f7e089726194c4b25df785030b44b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-7db605ffba45efe17bf04bdcd32fe67e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -377,10 +378,6 @@ div.csl-indent {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -705,7 +702,7 @@ Figure&nbsp;7.3: The full MODIS MCD12Q1 LULC classification workflow (after Frie
 <section id="ground-truth-reference-data" class="level3" data-number="7.2.1">
 <h3 data-number="7.2.1" class="anchored" data-anchor-id="ground-truth-reference-data"><span class="header-section-number">7.2.1</span> Ground truth reference data</h3>
 <p>Critical in our exercise is the reference data we use to classify different Land-Use and Land-Cover types with. Generally ground truth data is used in order to create training and testing datasets. This ground truth data are locations which are visually validated to belong to a particular Land-Use or Land-Cover class. These data are gathered by <em>in-situ</em> surveys, or leverage high(er) resolution data and visual interpretation to confirm the the Land-Use or Land-Cover type.</p>
-<p>For example, the LUCAS database of the European Commission Joint Research Center provides three-yearly survey data on the Land-Use and Land-Cover state <span class="citation" data-cites="dandrimont_harmonised_2020">(<a href="references.html#ref-dandrimont_harmonised_2020" role="doc-biblioref">d’Andrimont et al. 2020</a>)</span>, while the Geo-Wiki project used crowdsourcing to confirm Land-Use and Land-Cover types using high resolution remote sensing imagery <span class="citation" data-cites="fritz_global_2017">(<a href="references.html#ref-fritz_global_2017" role="doc-biblioref">Fritz et al. 2017</a>)</span>. Other products use in house databases using similar approaches <span class="citation" data-cites="Friedl2010">(<a href="references.html#ref-Friedl2010" role="doc-biblioref">Friedl et al. 2010</a>)</span>. In this example, I will rely on the freely available crowdsourced (Geo-Wiki) dataset <span class="citation" data-cites="fritz_global_2017">(<a href="references.html#ref-fritz_global_2017" role="doc-biblioref">Fritz et al. 2017</a>)</span>. These ground truth labels differ slightly from the International Geosphere-Biosphere Programme (IGBP) classes used in the MCD12Q1 product. Nevertheless, the general principles are the same.</p>
+<p>For example, the LUCAS database of the European Commission Joint Research Center provides three-yearly survey data on the Land-Use and Land-Cover state <span class="citation" data-cites="dandrimont_harmonised_2020">(<a href="references.html#ref-dandrimont_harmonised_2020" role="doc-biblioref"><span class="nocase">d’Andrimont et al.</span> 2020</a>)</span>, while the Geo-Wiki project used crowdsourcing to confirm Land-Use and Land-Cover types using high resolution remote sensing imagery <span class="citation" data-cites="fritz_global_2017">(<a href="references.html#ref-fritz_global_2017" role="doc-biblioref">Fritz et al. 2017</a>)</span>. Other products use in house databases using similar approaches <span class="citation" data-cites="Friedl2010">(<a href="references.html#ref-Friedl2010" role="doc-biblioref">Friedl et al. 2010</a>)</span>. In this example, I will rely on the freely available crowdsourced (Geo-Wiki) dataset <span class="citation" data-cites="fritz_global_2017">(<a href="references.html#ref-fritz_global_2017" role="doc-biblioref">Fritz et al. 2017</a>)</span>. These ground truth labels differ slightly from the International Geosphere-Biosphere Programme (IGBP) classes used in the MCD12Q1 product. Nevertheless, the general principles are the same.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the reference (validation) sites from</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fritz et al. 2017 straight from Zenodo.org</span></span>
@@ -1610,33 +1607,33 @@ Figure&nbsp;7.5: A supervised machine learning based Land-Use and Land-Cover (LU
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-boehmke_hands-machine_2020" class="csl-entry" role="listitem">
-Boehmke, Brad, and Brandon M Greenwell. 2020. <em>Hands-<span>On</span> <span>Machine</span> <span>Learning</span> with <span>R</span></em>. Boca Raton, US: CRC Press. <a href="https://www.routledge.com/Hands-On-Machine-Learning-with-R/Boehmke-Greenwell/p/book/9781138495685">https://www.routledge.com/Hands-On-Machine-Learning-with-R/Boehmke-Greenwell/p/book/9781138495685</a>.
+Boehmke, Brad, and Brandon M Greenwell. 2020. <em>Hands-<span>On</span> <span>Machine</span> <span>Learning</span> with <span>R</span></em>. CRC Press. <a href="https://www.routledge.com/Hands-On-Machine-Learning-with-R/Boehmke-Greenwell/p/book/9781138495685">https://www.routledge.com/Hands-On-Machine-Learning-with-R/Boehmke-Greenwell/p/book/9781138495685</a>.
 </div>
 <div id="ref-dandrimont_harmonised_2020" class="csl-entry" role="listitem">
-d’Andrimont, Raphaël, Momchil Yordanov, Laura Martinez-Sanchez, Beatrice Eiselt, Alessandra Palmieri, Paolo Dominici, Javier Gallego, et al. 2020. <span>“Harmonised <span>LUCAS</span> in-Situ Land Cover and Use Database for Field Surveys from 2006 to 2018 in the <span>European</span> <span>Union</span>.”</span> <em>Scientific Data</em> 7 (1): 352. <a href="https://doi.org/10.1038/s41597-020-00675-z">https://doi.org/10.1038/s41597-020-00675-z</a>.
+<span class="nocase">d’Andrimont, Raphaël, Momchil Yordanov, Laura Martinez-Sanchez, et al.</span> 2020. <span>“Harmonised <span>LUCAS</span> in-Situ Land Cover and Use Database for Field Surveys from 2006 to 2018 in the <span>European</span> <span>Union</span>.”</span> <em>Scientific Data</em> 7 (1): 352. <a href="https://doi.org/10.1038/s41597-020-00675-z">https://doi.org/10.1038/s41597-020-00675-z</a>.
 </div>
 <div id="ref-Friedl2002" class="csl-entry" role="listitem">
-Friedl, M A, D K McIver, J C F Hodges, X Y Zhang, D Muchoney, A H Strahler, C E Woodcock, et al. 2002. <span>“Global Land Cover Mapping from <span>MODIS</span>: Algorithms and Early Results.”</span> <em>Remote Sensing of Environment</em> 83 (1-2): 287–302. <a href="http://www.sciencedirect.com/science/article/B6V6V-46RDDFS-2/2/498151a48b317e5bb23b15033a694d4e">http://www.sciencedirect.com/science/article/B6V6V-46RDDFS-2/2/498151a48b317e5bb23b15033a694d4e</a>.
+Friedl, M A, D K McIver, J C F Hodges, et al. 2002. <span>“Global Land Cover Mapping from <span>MODIS</span>: Algorithms and Early Results.”</span> <em>Remote Sensing of Environment</em> 83 (1-2): 287–302. <a href="http://www.sciencedirect.com/science/article/B6V6V-46RDDFS-2/2/498151a48b317e5bb23b15033a694d4e">http://www.sciencedirect.com/science/article/B6V6V-46RDDFS-2/2/498151a48b317e5bb23b15033a694d4e</a>.
 </div>
 <div id="ref-Friedl2010" class="csl-entry" role="listitem">
-Friedl, M A, D Sulla-Menashe, B Tan, A Schneider, N Ramankutty, A Sibley, and X M Huang. 2010. <span>“<span>MODIS</span> <span>Collection</span> 5 Global Land Cover: <span>Algorithm</span> Refinements and Characterization of New Datasets.”</span> <em>Remote Sensing of Environment</em> 114 (1): 168–82. <a href="https://doi.org/10.1016/j.rse.2009.08.016">https://doi.org/10.1016/j.rse.2009.08.016</a>.
+Friedl, M A, D Sulla-Menashe, B Tan, et al. 2010. <span>“<span>MODIS</span> <span>Collection</span> 5 Global Land Cover: <span>Algorithm</span> Refinements and Characterization of New Datasets.”</span> <em>Remote Sensing of Environment</em> 114 (1): 168–82. <a href="https://doi.org/10.1016/j.rse.2009.08.016">https://doi.org/10.1016/j.rse.2009.08.016</a>.
 </div>
 <div id="ref-fritz_global_2017" class="csl-entry" role="listitem">
-Fritz, Steffen, Linda See, Christoph Perger, Ian McCallum, Christian Schill, Dmitry Schepaschenko, Martina Duerauer, et al. 2017. <span>“A Global Dataset of Crowdsourced Land Cover and Land Use Reference Data.”</span> <em>Scientific Data</em> 4 (1): 170075. <a href="https://doi.org/10.1038/sdata.2017.75">https://doi.org/10.1038/sdata.2017.75</a>.
+Fritz, Steffen, Linda See, Christoph Perger, et al. 2017. <span>“A Global Dataset of Crowdsourced Land Cover and Land Use Reference Data.”</span> <em>Scientific Data</em> 4 (1): 170075. <a href="https://doi.org/10.1038/sdata.2017.75">https://doi.org/10.1038/sdata.2017.75</a>.
 </div>
 <div id="ref-Huete2002" class="csl-entry" role="listitem">
 Huete, A, K Didan, T Miura, E P Rodriguez, X Gao, and L G Ferreira. 2002. <span>“Overview of the Radiometric and Biophysical Performance of the <span>MODIS</span> Vegetation Indices.”</span> <em>Remote Sensing of Environment</em> 83 (1-2): 195–213. <a href="citeulike-article-id:274524http://dx.doi.org/10.1016/S0034-4257(02)00096-2">citeulike-article-id:274524http://dx.doi.org/10.1016/S0034-4257(02)00096-2</a>.
 </div>
 <div id="ref-hufkens_bluegreen-labsappeears_2023" class="csl-entry" role="listitem">
-Hufkens, Koen. 2023. <span>“Bluegreen-Labs/Appeears: Appeears: An Interface to the <span>NASA</span> <span>AppEEARS</span> <span>API</span>.”</span> Zenodo. <a href="https://doi.org/10.5281/zenodo.7958270">https://doi.org/10.5281/zenodo.7958270</a>.
+Hufkens, Koen. 2023. <em>Bluegreen-Labs/Appeears: Appeears: An Interface to the <span>NASA</span> <span>AppEEARS</span> <span>API</span></em>. Zenodo. <a href="https://doi.org/10.5281/zenodo.7958270">https://doi.org/10.5281/zenodo.7958270</a>.
 </div>
 <div id="ref-kuhn_tidy_2022" class="csl-entry" role="listitem">
-Kuhn, Max, and Julia Silge. 2022. <em>Tidy <span>Modeling</span> with <span>R</span>: <span>A</span> <span>Framework</span> for <span>Modeling</span> in the <span>Tidyverse</span></em>. 1st edition. Beijing Boston Farnham Sebastopol Tokyo: O’Reilly Media.
+Kuhn, Max, and Julia Silge. 2022. <em>Tidy <span>Modeling</span> with <span>R</span>: <span>A</span> <span>Framework</span> for <span>Modeling</span> in the <span>Tidyverse</span></em>. 1st edition. O’Reilly Media.
 </div>
 <div id="ref-zeng_optical_2022" class="csl-entry" role="listitem">
-Zeng, Yelu, Dalei Hao, Alfredo Huete, Benjamin Dechant, Joe Berry, Jing M. Chen, Joanna Joiner, et al. 2022. <span>“Optical Vegetation Indices for Monitoring Terrestrial Ecosystems Globally.”</span> <em>Nature Reviews Earth &amp; Environment</em> 3 (7): 477–93. <a href="https://doi.org/10.1038/s43017-022-00298-5">https://doi.org/10.1038/s43017-022-00298-5</a>.
+Zeng, Yelu, Dalei Hao, Alfredo Huete, et al. 2022. <span>“Optical Vegetation Indices for Monitoring Terrestrial Ecosystems Globally.”</span> <em>Nature Reviews Earth &amp; Environment</em> 3 (7): 477–93. <a href="https://doi.org/10.1038/s43017-022-00298-5">https://doi.org/10.1038/s43017-022-00298-5</a>.
 </div>
 </div>
 </section>

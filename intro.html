@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Introduction – A Handful of Pixels</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -24,7 +27,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -55,19 +57,18 @@ div.csl-indent {
 <link href="./figures/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1b664e6692268865ac8c350bc2db6ed4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-55abac0465d10ec823624cc1da9df1de.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-1b664e6692268865ac8c350bc2db6ed4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7db605ffba45efe17bf04bdcd32fe67e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-6d3f7e089726194c4b25df785030b44b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-7db605ffba45efe17bf04bdcd32fe67e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -329,10 +330,6 @@ div.csl-indent {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -486,7 +483,7 @@ div.csl-indent {
 <p>This book uses the R statistical language in order to demonstrate how to process geo-spatial data. For many this might seem an odd choice but contrary to common believes R does provide solid geo-spatial frameworks. These frameworks provide all the tools you need for small and larger geo-spatial projects.</p>
 <p>I will focus on a set of examples which are rather limited in scope, using just a handfull of pixels. Not only does this allow you to experiment with geo-spatial data on limited compute infrastructure, it also shows you that true science can be done with relatively modest means. In many ways this logic runs counter to the current practices either moving analysis to the cloud or trying to provide high resolution wall-to-wall (global) coverage irrespective of the added value to a study.</p>
 <p>In addition, most validation data is provided as point scale data (through either surveys or other field work). In effect, much research always starts with considering a handfull of point scale data, before upscaling. Obviously, working at a smaller spatial scale allows you to limit data management, leverage more limited compute infrastructure and experiment with methodological approaches.</p>
-<p>The goal of this book is therefore not to teach you a particular set of (industry) tools, but rather a balanced combination of both open source (R based) tools and a focus on conceptual development for rapid prototyping of research ideas (within R). This book is in many ways an extension of <a href="https://r.geocompx.org/index.html">Geocomputation with R</a> by <span class="citation" data-cites="lovelace_geocomputation_2019">Lovelace, Nowosad, and Muenchow (<a href="references.html#ref-lovelace_geocomputation_2019" role="doc-biblioref">2019</a>)</span>. For strict geo-computational knowledge I refer to this source. Although the book uses R the methods described are rather environment agnostic and a similar work could be created for the python or other languages.</p>
+<p>The goal of this book is therefore not to teach you a particular set of (industry) tools, but rather a balanced combination of both open source (R based) tools and a focus on conceptual development for rapid prototyping of research ideas (within R). This book is in many ways an extension of <a href="https://r.geocompx.org/index.html">Geocomputation with R</a> by <span class="citation" data-cites="lovelace_geocomputation_2019">Lovelace et al. (<a href="references.html#ref-lovelace_geocomputation_2019" role="doc-biblioref">2019</a>)</span>. For strict geo-computational knowledge I refer to this source. Although the book uses R the methods described are rather environment agnostic and a similar work could be created for the python or other languages.</p>
 <p>This book <strong>requires prior knowledge</strong> of programming in <strong>R</strong>, <strong>git</strong> and cloud based collaborative tools such as <strong>Github</strong>. However, to refresh some concepts, or for those who want to skip ahead, I will repeat some basic skills at the beginning of the book in <a href="basic_R.html" class="quarto-xref"><span>1&nbsp; Crash course R</span></a> to get you started.</p>
 <section id="formal-course-work" class="level2">
 <h2 class="anchored" data-anchor-id="formal-course-work">Formal course work</h2>
@@ -496,7 +493,7 @@ div.csl-indent {
 <p>Document problem solving extensively in between code blocks. Mention (cite) resources you consulted, packages used, etc. You will have to find the original source if you consult external resources, ChatGPT (or similar large language model chat services) are <strong>not</strong> a valid reference in and on itself.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-lovelace_geocomputation_2019" class="csl-entry" role="listitem">
 Lovelace, Robin, Jakub Nowosad, and Jannes Muenchow. 2019. <em>Geocomputation in <span>R</span></em>. Chapman &amp; Hall.
 </div>

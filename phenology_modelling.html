@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>6&nbsp; Phenology modelling – A Handful of Pixels</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -59,7 +62,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -90,19 +92,18 @@ div.csl-indent {
 <link href="./figures/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1b664e6692268865ac8c350bc2db6ed4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-55abac0465d10ec823624cc1da9df1de.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-1b664e6692268865ac8c350bc2db6ed4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7db605ffba45efe17bf04bdcd32fe67e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-6d3f7e089726194c4b25df785030b44b.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-7db605ffba45efe17bf04bdcd32fe67e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -144,7 +145,7 @@ div.csl-indent {
 <script src="site_libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -406,10 +407,6 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
-      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -587,7 +584,7 @@ window.Quarto = {
 </section>
 <section id="sec-phenocam" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="sec-phenocam"><span class="header-section-number">6.2</span> PhenoCam validation data</h2>
-<p>To illustrate the use of growing degree days in modelling spring phenology, I will use PhenoCam data. The <a href="https://phenocam.nau.edu/webcam/">PhenoCam network</a> <span class="citation" data-cites="richardson_tracking_2018 richardson_tracking_2018-1">(<a href="references.html#ref-richardson_tracking_2018" role="doc-biblioref">Andrew D. Richardson 2018</a>; <a href="references.html#ref-richardson_tracking_2018-1" role="doc-biblioref">Andrew D. Richardson et al. 2018</a>)</span> uses network connected cameras to collect seasonal trajectories of vegetation greenness, as characterized with green chromatic coordinate (GCC) values. PhenoCam data can be downloaded using the <a href="https://bluegreen-labs.github.io/phenocamr/"><code>phenocamr</code> R package</a> <span class="citation" data-cites="hufkens_integrated_2018">(<a href="references.html#ref-hufkens_integrated_2018" role="doc-biblioref">Hufkens et al. 2018</a>)</span>.</p>
+<p>To illustrate the use of growing degree days in modelling spring phenology, I will use PhenoCam data. The <a href="https://phenocam.nau.edu/webcam/">PhenoCam network</a> <span class="citation" data-cites="richardson_tracking_2018 richardson_tracking_2018-1">(<a href="references.html#ref-richardson_tracking_2018" role="doc-biblioref">Richardson 2018</a>; <a href="references.html#ref-richardson_tracking_2018-1" role="doc-biblioref">Richardson et al. 2018</a>)</span> uses network connected cameras to collect seasonal trajectories of vegetation greenness, as characterized with green chromatic coordinate (GCC) values. PhenoCam data can be downloaded using the <a href="https://bluegreen-labs.github.io/phenocamr/"><code>phenocamr</code> R package</a> <span class="citation" data-cites="hufkens_integrated_2018">(<a href="references.html#ref-hufkens_integrated_2018" role="doc-biblioref">Hufkens et al. 2018</a>)</span>.</p>
 <p>The <code>phenocamr</code> R package uses the PhenoCam API to access the latest GCC time series and derive phenology using a threshold-based methodology similar to that described in <a href="phenology_algorithms.html" class="quarto-xref"><span>Chapter 5</span></a>. The data in <a href="#fig-phenocam-harvard" class="quarto-xref">Figure&nbsp;<span>6.1</span></a> should therefore be familiar. The <code>phenocamr</code> API call also downloads <a href="https://daymet.ornl.gov/">DAYMET data</a>, which includes both daily minimum and maximum data. This ancillary data will be used in this basic modelling example below.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># I will use the phenocamr package which </span></span>
@@ -1158,7 +1155,7 @@ Figure&nbsp;6.4: Daily mean temperature for the first 16 days of 2012 for the gr
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">par =</span> optim_par</span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Plotting these results show a diverse response across the landscape, with higher elevation locations in the north west of the scene having a later leaf out date (in DOY) then coastal or urban areas (i.e.&nbsp;the greater Boston areas south east in the scene). This is both a reflection of the lapse rate as discussed in <a href="phenology_trends.html" class="quarto-xref"><span>Chapter 4</span></a> and the urban heat island effect <span class="citation" data-cites="Zhang2004">(<a href="references.html#ref-Zhang2004" role="doc-biblioref">Zhang, Friedl, and Schaaf 2004</a>)</span>.</p>
+<p>Plotting these results show a diverse response across the landscape, with higher elevation locations in the north west of the scene having a later leaf out date (in DOY) then coastal or urban areas (i.e.&nbsp;the greater Boston areas south east in the scene). This is both a reflection of the lapse rate as discussed in <a href="phenology_trends.html" class="quarto-xref"><span>Chapter 4</span></a> and the urban heat island effect <span class="citation" data-cites="Zhang2004">(<a href="references.html#ref-Zhang2004" role="doc-biblioref">Zhang et al. 2004</a>)</span>.</p>
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1208,7 +1205,7 @@ Figure&nbsp;6.5: Interactive map of the spatially scaled optimized growing degre
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-aono_phenological_2008" class="csl-entry" role="listitem">
 Aono, Yasuyuki, and Keiko Kazui. 2008. <span>“Phenological Data Series of Cherry Tree Flowering in <span>Kyoto</span>, <span>Japan</span>, and Its Application to Reconstruction of Springtime Temperatures Since the 9th Century.”</span> <em>International Journal of Climatology</em> 28 (7): 905–14. <a href="https://doi.org/10.1002/joc.1594">https://doi.org/10.1002/joc.1594</a>.
 </div>
@@ -1228,7 +1225,7 @@ Hufkens, Koen, David Basler, Tom Milliman, Eli K. Melaas, and Andrew D. Richards
 Richardson, Andrew D. 2018. <span>“Tracking Seasonal Rhythms of Plants in Diverse Ecosystems with Digital Camera Imagery.”</span> <em>New Phytologist</em>, no. 11: 1–9. <a href="https://doi.org/10.1111/nph.15591">https://doi.org/10.1111/nph.15591</a>.
 </div>
 <div id="ref-richardson_tracking_2018-1" class="csl-entry" role="listitem">
-Richardson, Andrew D., Koen Hufkens, Tom Milliman, Donald M. Aubrecht, Min Chen, Josh M. Gray, Miriam R. Johnston, et al. 2018. <span>“Tracking Vegetation Phenology Across Diverse <span>North</span> <span>American</span> Biomes Using <span>PhenoCam</span> Imagery.”</span> <em>Scientific Data</em> 5 (1). <a href="https://doi.org/10.1038/sdata.2018.28">https://doi.org/10.1038/sdata.2018.28</a>.
+Richardson, Andrew D., Koen Hufkens, Tom Milliman, et al. 2018. <span>“Tracking Vegetation Phenology Across Diverse <span>North</span> <span>American</span> Biomes Using <span>PhenoCam</span> Imagery.”</span> <em>Scientific Data</em> 5 (1). <a href="https://doi.org/10.1038/sdata.2018.28">https://doi.org/10.1038/sdata.2018.28</a>.
 </div>
 <div id="ref-Zhang2004" class="csl-entry" role="listitem">
 Zhang, X, MA Friedl, and CB Schaaf. 2004. <span>“Climate Controls on Vegetation Phenological Patterns in Northern Mid-and High Latitudes Inferred from <span>MODIS</span> Data.”</span> <em>Global Change Biology</em>, no. 10: 1133–45. <a href="https://doi.org/10.1111/j.1365-2486.2004.00784.x">https://doi.org/10.1111/j.1365-2486.2004.00784.x</a>.
